@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "9iHIqbNDMZY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HP\\Mist\\Eva\\Eva_Utilities\\Eva_Utilities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\pdfpig\\0.1.9\\pdfpig.0.1.9.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,13 @@
+C:\Users\HP\Mist\Eva\Eva_Utilities\bin\Debug\net8.0\Eva_Utilities.deps.json
+C:\Users\HP\Mist\Eva\Eva_Utilities\bin\Debug\net8.0\Eva_Utilities.dll
+C:\Users\HP\Mist\Eva\Eva_Utilities\bin\Debug\net8.0\Eva_Utilities.pdb
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.csproj.AssemblyReference.cache
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.AssemblyInfoInputs.cache
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.AssemblyInfo.cs
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.csproj.CoreCompileInputs.cache
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.sourcelink.json
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.dll
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\refint\Eva_Utilities.dll
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\Eva_Utilities.pdb
+C:\Users\HP\Mist\Eva\Eva_Utilities\obj\Debug\net8.0\ref\Eva_Utilities.dll
