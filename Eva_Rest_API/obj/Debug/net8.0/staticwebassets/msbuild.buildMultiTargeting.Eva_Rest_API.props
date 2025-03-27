@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Eva_Rest_API.props" />
+</Project>
