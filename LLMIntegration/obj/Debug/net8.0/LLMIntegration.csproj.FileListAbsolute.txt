@@ -1,0 +1,16 @@
+C:\Users\HP\Mist\Eva\LLMIntegration\bin\Debug\net8.0\LLMIntegration.deps.json
+C:\Users\HP\Mist\Eva\LLMIntegration\bin\Debug\net8.0\LLMIntegration.dll
+C:\Users\HP\Mist\Eva\LLMIntegration\bin\Debug\net8.0\LLMIntegration.pdb
+C:\Users\HP\Mist\Eva\LLMIntegration\bin\Debug\net8.0\Eva_Repository.dll
+C:\Users\HP\Mist\Eva\LLMIntegration\bin\Debug\net8.0\Eva_Repository.pdb
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.csproj.AssemblyReference.cache
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.AssemblyInfoInputs.cache
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.AssemblyInfo.cs
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.csproj.CoreCompileInputs.cache
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.sourcelink.json
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMInteg.BB0C43E6.Up2Date
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.dll
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\refint\LLMIntegration.dll
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\LLMIntegration.pdb
+C:\Users\HP\Mist\Eva\LLMIntegration\obj\Debug\net8.0\ref\LLMIntegration.dll
