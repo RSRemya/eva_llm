@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Sansita';
+  src: url('../fonts/Sansita/Sansita-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100hh;
+  overscroll-behavior: none;
+}
+
+body {
+  margin-left: 0%;
+  margin-right: 0%;
+  background-color: black;
+  overscroll-behavior: none;
+}
+
+.big_bold_font {
+  font-size: 65px;
+  font-family: 'Sansita';
+  color: black;
+}
+

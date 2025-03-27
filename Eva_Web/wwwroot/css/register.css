@@ -1,0 +1,124 @@
+.register_main_div {
+    background-color: #f5ecec;
+    padding-bottom: 150px;
+  }
+  
+  .register_padded_div {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+  
+  .register_div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 235px;
+  }
+  
+  .left_register_div {
+    flex: 1;
+  }
+  
+  .left_register_div p {
+    font-weight: 200;
+    margin-bottom: 5px;
+  }
+  
+  .right_register_div {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .register_eva_img {
+    border-radius: 0px;
+    height: 715px;
+    width: 490px;
+  }
+  
+  .register_rounded_textbox {
+    border: 2px solid #787474;
+    background-color: #ccc4c4;
+    border-radius: 35px;
+    padding-left: 25px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0px;
+    font-size: 16px;
+    color: black;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  .register_rounded_textbox:hover {
+    transform: scale(1.03);
+  }
+  
+  .register_submit {
+    margin-top: 14px;
+    border-color: black;
+    background-color: transparent;
+    height: 78px;
+    width: 115px;
+    color: black;
+    border: 3px solid;
+    border-radius: 25px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .register_submit:hover {
+    border-color: black;
+    background-color: black;
+    color: white;
+  }
+  
+  .register_submit_icon {
+    display: none;
+    color: white;
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  
+  @media (max-width: 1092.98px) {
+    .register_div {
+      gap: 65px;
+    }
+  
+    .register_padded_div {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .register_div {
+      gap: 5px;
+      flex-direction: column;
+    }
+  
+    .left_register_div {
+      width: 100%;
+    }
+  
+    .register_eva_img {
+      border-radius: 0px;
+      max-height: 600px;
+      min-width: 100%;
+    }
+  
+    .register_main_div {
+      padding-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .register_eva_img {
+      max-height: 500px;
+      min-width: 100%;
+    }
+  }
+  
+  

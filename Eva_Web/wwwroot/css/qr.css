@@ -1,0 +1,193 @@
+.qr_main_div {
+  min-height: 100vh;
+  padding-left: 55px;
+  padding-right: 55px;
+  background-color: #f5ecec;
+}
+
+.qr_content_div {
+  width: 40%;
+}
+
+.qr_content_div p {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.qr_button {
+  border-radius: 50px;
+  height: 35px;
+  width: 300px;
+  background-color: transparent;
+  border: 3px solid;
+  border-color: black;
+  transition: background-color 0.2s ease;
+}
+
+.qr_button:hover {
+  background-color: black;
+  color: white;
+}
+
+.qr_signup_div {
+  align-items: top;
+  padding-bottom: 30px;
+  gap: 170px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+}
+
+.qr_signup_div_left {
+  align-items: flex-start;
+  margin: 0px;
+  padding: 0px;
+  flex: 1;
+}
+
+.qr_signup_div_right {
+  padding-top: 70px;
+  align-items: top;
+  flex: 2;
+}
+
+.qr_signup_div_right p {
+  color: black;
+  padding: 0px;
+  margin: 4px;
+}
+
+.qr_signup_div_styled_link {
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.qr_signup_div_left_img {
+  height: 340px;
+  width: 365px;
+}
+
+.qr_signup_div_left_title {
+  font-size: 45px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Sansita';
+}
+
+.qr_signup_div_left_desp {
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
+}
+
+.qr_signup_checkbox_container {
+  display: flex;
+  align-items: left;
+}
+
+.qr_signup_checkbox {
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #787474;
+  border-radius: 50%;
+  background-color: #ccc4c4;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.qr_signup_checkbox:hover {
+  transform: scale(1.1);
+}
+
+.qr_signup_checkbox:checked {
+  background-color: #ccc4c4;
+  border-color: #787474;
+}
+
+.qr_signup_checkbox:checked::before {
+  margin-bottom: 10px;
+  padding: 0;
+  position: absolute;
+  content: '✓';
+  color: black;
+  font-size: 24px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.qr_signup_checkbox_container label {
+  padding-left: 14px;
+  padding-top: 4px;
+  font-size: 15px;
+  color: black;
+}
+
+@media (max-width: 1092.98px) {
+  .qr_content_div {
+    width: 60%;
+  }
+
+  .qr_signup_div {
+    gap: 60px;
+  }
+
+  .qr_signup_div_left_img {
+    height: 210px;
+    width: 280px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .qr_main_div {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .qr_signup_div {
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .qr_signup_div_right {
+    padding-top: 40px;
+  }
+
+  .qr_signup_div_left_img {
+    align-self: center;
+    height: 290px;
+    width: 300px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 667.98px) {
+  .qr_content_div {
+    width: 80%;
+    padding-bottom: 30px;
+  }
+
+  .qr_signup_div {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .qr_content_div {
+    width: 95%;
+    padding-bottom: 30px;
+  }
+  .qr_signup_div_left_img {
+    height: 280px;
+    width: 270px;
+  }
+}

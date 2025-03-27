@@ -1,0 +1,206 @@
+.contact_main_div {
+    background-color: #f5ecec;
+    padding-bottom: 150px;
+  }
+  
+  .contact_padded_div {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+  
+  .contact_styled_link {
+    color: black;
+    font-weight: 200;
+    font-size: 15px;
+  }
+  
+  .email_link {
+    color: black;
+    /* Sets the text color to black */
+    font-weight: 300;
+    font-size: 17px;
+  }
+  
+  .contacts_div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 235px;
+  }
+  
+  .left_contact_div {
+    flex: 1;
+  }
+  
+  .left_contact_div p {
+    font-weight: 200;
+    margin-bottom: 5px;
+  }
+  
+  .error_ui {
+    display: inline-block;
+    padding: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    background-color: #ce2c30;
+    border-radius: 40px;
+    color: white;
+    font-size: 13px;
+    font-weight: 200;
+  }
+  
+  .right_contact_div {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .contact_eva_img {
+    border-radius: 0px;
+    height: 500px;
+    width: 500px;
+  }
+  
+  .fullname_div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .fullname_div_left {
+    flex: 2;
+    padding: 0px;
+    justify-content: flex-start;
+  }
+  
+  .fullname_div_right {
+    flex: 2;
+    padding: 0px;
+    align-self: flex-start;
+  }
+  
+  .contact_rounded_textbox {
+    border: 2px solid #787474;
+    /* Pink border */
+    background-color: #ccc4c4;
+    /* Light pink background color */
+    border-radius: 35px;
+    /* Rounded corners */
+    padding-left: 25px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0px;
+    font-size: 16px;
+    /* Font size */
+    color: black;
+    outline: none;
+    /* Remove default outline */
+    box-sizing: border-box;
+    /* Include padding and border in element's total width and height */
+    width: 100%;
+    /* Full width, can be adjusted as needed */
+    transition: transform 0.3s ease;
+  }
+  
+  .contact_rounded_textbox:hover {
+    transform: scale(1.03);
+  }
+  
+  .contact_rounded_textarea {
+    resize: none;
+    /* Disable default resizing */
+    border: 2px solid #787474;
+    /* Pink border */
+    background-color: #ccc4c4;
+    /* Light pink background color */
+    border-radius: 25px;
+    /* Rounded corners */
+    padding-left: 25px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    /* Font size */
+    color: black;
+    margin: 0px;
+    outline: none;
+    /* Remove default outline */
+    box-sizing: border-box;
+    /* Include padding and border in element's total width and height */
+    width: 100%;
+    /* Full width, can be adjusted as needed */
+    min-height: 100px;
+    /* Minimum height of the textarea */
+    transition: transform 0.2s ease;
+  }
+  
+  .contact_rounded_textarea:hover {
+    transform: scale(1.03);
+  }
+  
+  .contact_submit {
+    margin-top: 14px;
+    border-color: black;
+    background-color: transparent;
+    height: 78px;
+    width: 115px;
+    color: black;
+    border: 3px solid;
+    border-radius: 25px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .contact_submit:hover {
+    border-color: black;
+    background-color: black;
+    color: white;
+  }
+  
+  .contact_submit_icon {
+    display: none;
+    color: white;
+    font-size: 24px;
+    vertical-align: middle;
+    /* Align the icon vertically with the text */
+  }
+  
+  @media (max-width: 1092.98px) {
+    .contacts_div {
+      gap: 65px;
+    }
+  
+    .contact_padded_div {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .contacts_div {
+      gap: 5px;
+      flex-direction: column;
+    }
+  
+    .contact_eva_img {
+      border-radius: 0px;
+      max-height: 600px;
+      min-width: 100%;
+    }
+  
+    .contact_main_div {
+      padding-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .contact_eva_img {
+      max-height: 500px;
+      min-width: 100%;
+    }
+  }
+  
+  
