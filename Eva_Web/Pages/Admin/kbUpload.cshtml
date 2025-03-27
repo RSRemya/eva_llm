@@ -1,0 +1,148 @@
+@page
+@model KBUploadModel
+@{
+    ViewData["Title"] = "KBUpload";
+}
+
+
+<div class="kbUpload_main_div">
+    @await Html.PartialAsync("_TopNavBar", @Model)
+
+    <div class="kbUpload_body_div">
+        
+        <div class="kbUpload_body_left">
+            <center><div class="kbUpload_left_avatar">
+                <img class='img-fluid' src='~/image/eva3.jpg' loading="lazy"></img>
+            </div>
+            <br>
+            <p><b>Hey, This is Eva</b></p></center>
+        </div>
+
+
+        <div class="kbUpload_body_right">
+            <form method="post" enctype="multipart/form-data">
+            <div class="kbUpload_right_prompt">
+                <b>System Prompt: </b><br>
+                <i>Provides instructions to guide the chatbot's behavior and responses.</i>
+                @if (!string.IsNullOrEmpty(Model.PromptErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.PromptErrorMessage
+                        </div>
+                    }
+                <textarea type="text" name="KBModel.systemPromptText"
+                 class='system_prompt_textarea' placeholder="Enter your System Prompt here" asp-for="kbModel.systemPromptText"></textarea>
+            </div>
+
+                <br>
+                <div class="kbUpload_right_prompt">
+                    <b>Diary Prompt: </b><br>
+                    <i>Provides instructions to guide the chatbot's Diary writing behavior.</i>
+                    @if (!string.IsNullOrEmpty(Model.PromptErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.PromptErrorMessage
+                        </div>
+                    }
+                    <textarea type="text" name="KBModel.DiaryPrompt"
+                              class='system_prompt_textarea' placeholder="Enter your Diary Prompt here" asp-for="kbModel.DiaryPrompt"></textarea>
+                </div>
+
+                <br>
+
+            <div class="kbUpload_right_file">
+                <b>Knowledge Base: </b><i>(Max 5 files)</i><br>
+                <i>Stores information to enhance the chatbot's understanding and responses.</i>
+                 @if (!string.IsNullOrEmpty(Model.FilesErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.FilesErrorMessage
+                        </div>
+                    }<br>
+                    <label for="file-upload" class="custom-file-upload"> Upload your KB file here (For security reasons we only store the file content and not the actual file itself)
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </label>
+                    <button onclick="ClearKB(event);">Clear</button>
+                    <input id="file-upload" name="KBModel.selectedFiles" type="file" multiple/>
+                    <input id="kb_file_names" type="hidden" asp-for="kbModel.SavedKBFileNames" />
+                <div id="file-list" class="file-list">
+                        @if (!string.IsNullOrEmpty(Model.kbModel.SavedKBFileNames))
+                        @foreach (var fileName in Model.kbModel.SavedKBFileNames.Split(','))
+                        {
+                            @if(fileName!=""){
+                            <div class="file-box">@fileName</div>
+                            }
+                        }
+                    </div>
+            </div>
+
+                <br>
+
+            <div class="kbUpload_right_submit">
+                <center>
+                    <button class="kb_submit" id="sendButton" onclick="loadData()">
+                        <span id="buttonText">SAVE</span>
+                        <span id="loadingIcon" class="kb_submit_icon">
+                            <i class="fa-solid fa-circle fa-flip"></i>
+                        </span>
+                    </button>
+                </center>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+
+    function ClearKB(event) { 
+            event.preventDefault();
+            document.getElementById('file-list').value = ''
+            document.getElementById('kb_file_names').value = '' 
+            
+            const fileListContainer = document.getElementById("file-list");   
+            fileListContainer.innerHTML = "";
+    }
+//Show the kbUpload_body_left file information UI
+document.getElementById("file-upload").addEventListener("change", function(event) {
+   var files = Array.from(event.target.files);
+   const fileListContainer = document.getElementById("file-list");
+   files = files.slice(0, 5);    
+
+    // Clear previous file boxes
+    fileListContainer.innerHTML = "";
+
+    files.forEach(file => {
+        // Create a div for each file
+        const fileBox = document.createElement("div");
+        fileBox.classList.add("file-box");
+        fileBox.textContent = file.name; // Set filename as content
+
+        // Append the box to the file list container
+        fileListContainer.appendChild(fileBox);
+    });
+});
+
+//Show dialog UI to Show the status
+ var dbStatus = '@Model.DbStatus';
+        document.addEventListener('DOMContentLoaded', function () {
+            if (dbStatus == "Success") {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Bot information has been saved successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'Okay!',
+                });
+            }
+            else if (dbStatus == "Failed") {
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Failed to save your Bot information. Please try again',
+                    icon: 'error',
+                    confirmButtonText: 'Okay!'
+                });
+            }
+        });
+</script>
+}

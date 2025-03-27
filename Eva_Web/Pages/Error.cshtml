@@ -1,0 +1,65 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #c2baba;
+        ;
+        color: #333;
+        text-align: center;
+        padding: 50px;
+    }
+
+    h1 {
+        font-size: 48px;
+        color: #e74c3c;
+    }
+
+    p {
+        font-size: 20px;
+        color: #555;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .icon {
+        font-size: 100px;
+        color: #e74c3c;
+        margin-bottom: 20px;
+    }
+
+    .message {
+        font-size: 20px;
+        color: #555;
+    }
+
+    .note {
+        font-size: 16px;
+        color: #888;
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+  
+    <div class="container">
+        <div class="icon">
+            <i class="fas fa-exclamation-circle"></i> <!-- You can replace this with any icon you prefer -->
+        </div>
+        <h1>Something Went Wrong</h1>
+        <p class="message">We're sorry, but something unexpected happened. Our team has been notified and is looking into it.</p>
+        <p class="note">Please try again later. Thank you for your patience!</p>
+    </div>
+
+</body>

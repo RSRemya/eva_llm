@@ -1,0 +1,139 @@
+@page
+@model ContactsModel
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+
+<div class='contact_main_div'>
+    <div class="head-styled-div">
+        <p>Apply to be a chatbot participant below!</p>
+    </div>
+
+    <div class='contact_padded_div'>
+        @await Html.PartialAsync("_TopNavBar", @Model)
+
+        <br>
+
+        <div class='contacts_div'>
+            <div class='left_contact_div col-md-6'>
+                <p class='big_bold_font'>Get in Touch!</p>
+                <p>Want to see what Eva has been up to or share your thoughts with the team? Drop us a message and stay
+                    tuned for exciting updates! ✨
+                </p>
+                <br>
+                <a class="email_link" href="mailto:hello@meetevahere.com">hello@meetevahere.com</a>
+                <br><br><br>
+                @if (!string.IsNullOrEmpty(Model.MainErrorMessage))
+                {
+                    <div class="error_ui">
+                        @Model.MainErrorMessage
+                    </div>
+                }
+                <form method="post" onsubmit="saveScrollPosition()">
+                    <input type="hidden" id="scrollPosition" name="scrollPosition" />
+                    <p>Name (required)</p>
+                    @if (!string.IsNullOrEmpty(Model.NameErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.NameErrorMessage
+                        </div>
+                    }
+                    <div class='fullname_div'>
+                        <div class='fullname_div_left'>
+                            <p>First Name</p>
+                            @if (!string.IsNullOrEmpty(Model.FirstNameErrorMessage))
+                            {
+                                <div class="error_ui">
+                                    @Model.FirstNameErrorMessage
+                                </div>
+                            }
+                            <input type="text" name="EmailModel.firstNameText" class='contact_rounded_textbox'
+                                asp-for="EmailModel.firstNameText" />
+                        </div>
+
+                        <div class='fullname_div_right'>
+                            <p>Last Name</p>
+                            @if (!string.IsNullOrEmpty(Model.LastNameErrorMessage))
+                            {
+                                <div class="error_ui">
+                                    @Model.LastNameErrorMessage
+                                </div>
+                            }
+                            <input type="text" name="EmailModel.lastNameText" class='contact_rounded_textbox'
+                                asp-for="EmailModel.lastNameText" />
+                        </div>
+                    </div>
+                    <br>
+                    <p>Email (required)</p>
+                    </p>
+                    @if (!string.IsNullOrEmpty(Model.EmailErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.EmailErrorMessage
+                        </div>
+                    }
+                    <input type="text" name="EmailModel.emailText" class='contact_rounded_textbox'
+                        asp-for="EmailModel.emailText" />
+                    <br><br>
+                    <p>Message (required)</p>
+                    @if (!string.IsNullOrEmpty(Model.MessageErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.MessageErrorMessage
+                        </div>
+                    }
+                    <textarea type="text" name="EmailModel.messageText" class='contact_rounded_textarea'
+                        asp-for="EmailModel.messageText"></textarea>
+                    <div>
+                        <button class="contact_submit" id="sendButton" onclick="loadData()">
+                            <span id="buttonText">SEND</span>
+                            <span id="loadingIcon" class="contact_submit_icon"><i
+                                    class="fa-solid fa-circle fa-flip"></i></span>
+                        </button>
+                    </div>
+                </form>
+                <br><br>
+            </div>
+            <div class='right_contact_div col-md-6'>
+                <img class='contact_eva_img' src='~/image/eva_1.jpg' loading="lazy"></img>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function saveScrollPosition() {
+            var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            document.getElementById('scrollPosition').value = scrollPosition;
+        }
+
+        window.onload = function () {
+            var scrollPosition = '@Model.ScrollPosition';
+            if (scrollPosition) {
+                window.scrollTo(0, scrollPosition);
+            }
+        }
+
+        var dbStatus = '@Model.DbStatus';
+        document.addEventListener('DOMContentLoaded', function () {
+            if (dbStatus == "success") {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your contact information has been saved successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'Okay!',
+                });
+            }
+            else if (dbStatus == "failed") {
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Failed to save your contact information. Please try again',
+                    icon: 'error',
+                    confirmButtonText: 'Okay!'
+                });
+            }
+        });
+    </script>
+}

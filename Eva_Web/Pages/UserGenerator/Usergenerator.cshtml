@@ -1,0 +1,44 @@
+﻿@page
+@model Eva_Web.Pages.UsergeneratorModel
+
+@{
+    ViewData["Title"] = "User Generator";
+}
+
+
+<div class="credential_main_div">
+   
+    <br>
+    <br>
+    <div class="credential_head_div">
+        <center>
+            <div class="big_bold_font">Generated Credentials for you</div>
+            <br>
+            <div>You can choose from the below available <b>Username</b> and <b>Password</b> combinations. Do not forget to note it down before you select one, as it cannot be recovered later.            
+            </div>
+    </div>
+    </center>
+    <br>
+
+    <br><br><br>
+
+
+    <div class="credentials-container">
+        @foreach (var credential in Model.UserCredentials)
+        {
+                <form method="post">
+                    <div class="credential_div" onclick="this.closest('form').submit();">
+                        <div class="credential_div_left"></div>
+                        
+                        <div class="credential_div_right">
+                            <p><b>Username: </b><u>@credential.Key</u></p>
+                            <p><b>Password: </b><u>@credential.Value</u></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="Username" value="@credential.Key" />
+                    <input type="hidden" name="Password" value="@credential.Value" />
+                </form>  
+        }
+    </div>
+    <br><br>
+</div>

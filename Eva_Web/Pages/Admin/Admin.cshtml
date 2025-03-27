@@ -1,0 +1,255 @@
+@page
+@model Eva_Web.Pages.AdminModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="admin_background_div">
+    <div class="admin_main_div">
+        @await Html.PartialAsync("_TopNavBar",@Model)
+        <br>
+        <div class="admin_head_div">
+            <center>
+                <div class="big_bold_font">Eva Admin</div>
+            </center> 
+            <center><b>Active users = @Model.ActiveUserCount (Past Week) / Total users = @Model.TotalUserCount</b></center>
+            <center>
+                <div class="admin_head_desc"><b>You can <b>Accept</b> or <b>Reject</b> the newly applied user's
+                        invitation here.
+                        Also you can view all the feedback or suggestions from the users.</div>
+            </center>
+        </div>
+        <br>
+
+    </div>
+
+    <div class="admin_styled_div">
+        <div class="admin_styled_div_container"></div>
+        <div class="admin_styled_div_container"></div>
+        <div class="admin_styled_div_container"></div>
+        <div class="admin_styled_div_container"></div>
+        <div class="admin_styled_div_container"></div>
+    </div>
+
+    <br><br>
+
+    <div class="admin_tab_div">
+        <!-- Tab navigation -->
+        <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+            <li class="invitation_header nav-item" role="presentation">
+                <button class="nav-link active" id="feature1-tab" data-bs-toggle="tab" data-bs-target="#feature1"
+                    type="button" role="tab" aria-controls="feature1" aria-selected="true">Invitations</button>
+            </li>
+            <li class="feedback_header nav-item" role="presentation">
+                <button class="nav-link" id="feature2-tab" data-bs-toggle="tab" data-bs-target="#feature2" type="button"
+                    role="tab" aria-controls="feature2" aria-selected="false">Feedbacks</button>
+            </li>
+        </ul>
+        <br>
+        <div class="tab-content" id="adminTabContent">
+
+            <div class="tab-pane fade show active" id="feature1" role="tabpanel" aria-labelledby="feature1-tab">
+                <div class="table-responsive">
+                    @if (@Model.InviteModel.Count() == 0)
+                    {
+
+                        <center>
+                            <div class="admin_empty_data">
+                                <i class="fas fa-inbox"></i>
+                                <h5>No Invites Available</h5>
+                            </div>
+                        </center>
+                    }
+                    else
+                    {
+                        <table class="table table-striped">
+                            <thead class="table_head">
+                                <tr>
+                                    <th style="display: none;">ID</th>
+                                    <th>Email</th>
+                                    <th>Talk to Eva?</th>
+                                    <th>Access to Eva?</th>
+                                    <th>
+                                        <center>Action</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var data in Model.InviteModel)
+                                {
+                                    <form method="post" onsubmit="saveScrollPosition()">
+                                        <input type="hidden" id="scrollPosition" name="scrollPosition" />
+                                        <tr>
+                                            <td style="display: none;">
+                                                <input type="hidden" name="itemId" value="@data.requestId" />
+                                            </td>
+                                            <td>@data.emailText</td>
+                                            <td>@data.ques1Text</td>
+                                            <td>@data.ques2Text</td>
+                                            <td>
+                                                <div class="invitation_table_buttons">
+                                                    <button class="admin_action_button btn btn-success" name="action"
+                                                        value="accept" onclick="showIcon(this)">Accept
+                                                        <i class="fa-solid fa-circle fa-flip" style="visibility: hidden;"></i>
+                                                    </button>
+                                                    <button class="admin_action_button btn btn-danger" name="action"
+                                                        value="reject" onclick="showIcon(this)">Reject
+                                                        <i class="fa-solid fa-circle fa-flip" style="visibility: hidden;"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+
+            <!-- Feature 2 content -->
+            <div class="tab-pane fade" id="feature2" role="tabpanel" aria-labelledby="feature2-tab">
+                <div class="table-responsive">
+                    @if (@Model.FeatureModel.Count() == 0)
+                    {
+
+                        <center>
+                            <div class="admin_empty_data">
+                                <i class="fas fa-inbox"></i>
+                                <h5>No Feedbacks Available</h5>
+                            </div>
+                        </center>
+                    }
+                    else
+                    {
+                        <table class="table table-striped">
+                            <thead class="table_head">
+                                <tr>
+                                    <th style="display: none;">ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var data in Model.FeatureModel)
+                                {
+                                    <form method="post" onsubmit="saveScrollPosition()">
+                                        <input type="hidden" id="scrollPosition" name="scrollPosition" />
+                                        <tr>
+                                            <td style="display: none;">
+                                                <input type="hidden" name="itemId" value="@data.featureId" />
+                                            </td>
+                                            <td>@data.firstNameText</td>
+                                            <td>@data.lastNameText</td>
+                                            <td>@data.emailText</td>
+                                            <td>@data.messageText</td>
+                                            <td>
+                                                <button class="admin_action_button btn btn-dark" name="action" value="remove"
+                                                    onclick="showIcon(this)">
+                                                    Remove
+                                                    <i class="fa-solid fa-circle fa-flip" style="visibility: hidden;"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="success_overlay_alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    @TempData["SuccessMessage"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+}
+@if (TempData["RejectMessage"] != null)
+{
+    <div id="reject_overlay_alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    @TempData["RejectMessage"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+}
+@if (TempData["RemoveMessage"] != null)
+{
+    <div id="remove_overlay_alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    @TempData["RemoveMessage"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+}
+
+@section Scripts {
+    <script>
+
+        /// Storing the scroll position in global session rather than the local variable due to multi-form conflict
+        function saveScrollPosition() {
+            localStorage.setItem('scrollPosition', window.scrollY || document.documentElement.scrollTop);
+        }
+
+        window.onload = function () {
+            const scrollPosition = localStorage.getItem('scrollPosition') || document.documentElement.scrollTop;
+            if (scrollPosition) {
+                window.scrollTo(0, parseInt(scrollPosition, 10));
+                localStorage.removeItem('scrollPosition');
+            }
+        }
+
+
+        /// Saving and Re-Setting the current active tab after reload
+        document.querySelectorAll('#adminTabs .nav-link').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                localStorage.setItem('activeTab', this.id);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var activeTabId = localStorage.getItem('activeTab');
+                if (activeTabId) {
+                    var activeTab = document.getElementById(activeTabId);
+                    var activeTabContent = document.querySelector(activeTab.getAttribute('data-bs-target'));
+                    // Remove 'active' and 'show' from current active tab and content
+                    document.querySelectorAll('.nav-link').forEach(function (tab) {
+                        tab.classList.remove('active');
+                    });
+                    document.querySelectorAll('.tab-pane').forEach(function (content) {
+                        content.classList.remove('active');
+                        content.classList.remove('show');
+                    });
+                    // Add 'active' and 'show' to the stored tab and content
+                    activeTab.classList.add('active');
+                    activeTabContent.classList.add('active', 'show');
+                }
+            });
+        });
+
+        /// Setting timeouts for all the alerts
+        setTimeout(function () {
+            var successAlertElement = document.getElementById('success_overlay_alert');
+            var rejectAlertElement = document.getElementById('reject_overlay_alert');
+            var removeAlertElement = document.getElementById('remove_overlay_alert');
+
+            if (successAlertElement) {
+                var bsSuccessAlert = new bootstrap.Alert(successAlertElement);
+                bsSuccessAlert.close();
+            }
+
+            if (rejectAlertElement) {
+                var bsRejectAlert = new bootstrap.Alert(rejectAlertElement);
+                bsRejectAlert.close();
+            }
+
+            if (removeAlertElement) {
+                var bsRemoveAlert = new bootstrap.Alert(removeAlertElement);
+                bsRemoveAlert.close();
+            }
+        }, 3500);
+    </script>
+}

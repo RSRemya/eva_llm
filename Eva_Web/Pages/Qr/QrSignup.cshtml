@@ -1,0 +1,137 @@
+@page
+@model QrSignupModel
+@{
+    ViewData["Title"] = "QR Official Participant";
+}
+
+<div class="qr_main_div">
+    @await Html.PartialAsync("_TopNavBar",@Model)
+
+    <div class='qr_signup_div'>
+        <div class="qr_signup_div_left col-md-6">
+              <div>
+                <p class="qr_signup_div_left_title">Chatbot not yet live. Apply to be the first official chatbot participants!
+                <p>
+                <p class="qr_signup_div_left_desp">Apply to be a part of our participant community!
+                </p>
+            </div>
+            <br>
+            <div>
+                <img class="qr_signup_div_left_img" src="~/image/participant_eva.jpg" loading="lazy" />
+            </div>
+        </div>
+
+        <div class="qr_signup_div_right col-md-6 col-12">
+            <div>
+                <p>To protect your personal information, feel free to use a fake email or a temporary service like 
+                    <a class="qr_signup_div_styled_link" href="https://temp-mail.io/en/forwarding" target="_blank">Temp
+                        Mail</a>. This is just needed to update you on your participation status. Remember, the
+                    confirmation email might end up in your spam folder, so make sure to mark your temporary email as
+                    not spam.</p>
+            </div>
+            <br>
+            <form method="post" name="action" value="submit" onsubmit="saveScrollPosition()">
+                <input type="hidden" id="scrollPosition" name="scrollPosition" />
+                @if (!string.IsNullOrEmpty(Model.MainErrorMessage))
+                {
+                    <div class="error_ui">
+                        @Model.MainErrorMessage
+                    </div>
+                }
+                <p>Email (required)</p>
+                @if (!string.IsNullOrEmpty(Model.EmailErrorMessage))
+                {
+                    <div class="error_ui">
+                        @Model.EmailErrorMessage
+                    </div>
+                }
+                <input type="text" name="HomeEmailModel.emailText" class="contact_rounded_textbox"
+                    asp-for=HomeEmailModel.emailText />
+
+                <br><br>
+
+                <p>Why do you want to talk to Eva? (required)</p>
+                @if (!string.IsNullOrEmpty(Model.MessageErrorMessage))
+                {
+                    <div class="error_ui">
+                        @Model.MessageErrorMessage
+                    </div>
+                }
+                <textarea type="text" name="HomeEmailModel.messageText" class="contact_rounded_textarea"
+                    asp-for=HomeEmailModel.messageText></textarea>
+
+                <br><br>
+
+                <p>Why should you be given access to Eva? (required)</p>
+                @if (!string.IsNullOrEmpty(Model.Message2ErrorMessage))
+                {
+                    <div class="error_ui">
+                        @Model.Message2ErrorMessage
+                    </div>
+                }
+                <textarea type="text" name="HomeEmailModel.messageText2" class="contact_rounded_textarea"
+                    asp-for=HomeEmailModel.messageText2></textarea>
+
+                <br><br>
+
+                <div class="qr_signup_checkbox_container">
+                    <div>
+                        <input class="qr_signup_checkbox" type="checkbox" id="myCheckbox" name="myCheckbox"
+                            value="checkedValue">
+                    </div>
+                    <div><label>I CERTIFY THAT I AM ATLEAST 18 YEARS OLD.</label></div>
+                </div>
+
+                <br>
+
+                <button class="contact_submit" id="sendButton" onclick="loadData()">
+                    <span id="buttonText">SEND</span>
+                    <span id="loadingIcon" class="contact_submit_icon"><i class="fa-solid fa-circle fa-flip"></i></span>
+                </button>
+
+            </form>
+            <div>
+                <br>
+                <p>By sending this in, you agree to the <a class="qr_signup_div_styled_link" href="/Terms_Privacy/Terms"
+                        target="_blank">Terms of Service</a> and <a class="qr_signup_div_styled_link"
+                        href="/Terms_Privacy/Privacy" target="_blank">Privacy Notice</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+                                        <script>         
+                                            function saveScrollPosition() {
+                                                var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+                                                document.getElementById('scrollPosition').value = scrollPosition;
+                                            }
+
+                                            window.onload = function () {
+                                                var scrollPosition = '@Model.ScrollPosition';
+                                                if (scrollPosition) {
+                                                    window.scrollTo(0, scrollPosition);
+                                                }
+                                            };
+
+                                            var dbStatus = '@Model.DbStatus';
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                if (dbStatus == "success") {
+                                                    Swal.fire({
+                                                        title: 'Success!',
+                                                        text: 'Your application to speak to Eva has been sent successfully!',
+                                                        icon: 'success',
+                                                        confirmButtonText: 'Okay!'
+                                                    });
+                                                }
+                                                else if (dbStatus == "failed") {
+                                                    Swal.fire({
+                                                        title: 'Oops!',
+                                                        text: 'Failed to send your Invitation. Please try again',
+                                                        icon: 'error',
+                                                        confirmButtonText: 'Okay!'
+                                                    });
+                                                }
+                                            });
+                                        </script>
+}

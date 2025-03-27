@@ -1,0 +1,67 @@
+ 
+ <div class="icon-section">
+            <div class="left-section">
+                <a href="/Index">
+                    <img src="~/image/logo_transparent.png" />
+                    </a>
+                  
+            </div>
+             <div class="right-section">
+        @if (Model.IsLoggedIn)
+        {
+            <a class="styled-link" href="/Chatroom/Chat?id=@Model.UserId">
+                <p><b>Chat</b></p>
+            </a>
+            <a class="styled-link" href="/Chatroom/interactivechat">
+                <p><b>Interaction</b></p>
+            </a>
+            if (!Model.IsAdmin)
+            {
+
+                <a class="styled-link" href="/Contact/Contacts">
+                    <p><b>Contact</b></p>
+                </a>
+            }
+            @if (Model.IsAdmin)
+            {
+                <a class="styled-link" href="/Diary/Diary">
+                    <p><b>Diary</b></p>
+                </a>
+                <a class="styled-link" href="/Admin/Admin">
+                    <p><b>Admin</b></p>
+                </a>
+                <a class="styled-link" href="/Authentication/Register">
+                    <p><b>Register</b></p>
+                </a>
+                <a class="styled-link" href="/Chatroom/Demoroom">
+                    <p><b>Demo</b></p>
+                </a>
+                <a class="styled-link" href="/Chatroom/Chathistory">
+                    <p><b>Chat History</b></p>
+                </a>
+                <a class="styled-link" href="/Admin/kbUpload">
+                    <p><b>KB Upload</b></p>
+                </a>
+            }
+            <form id="logoutForm" method="post">
+                <button class="logout_button" type="submit" name="action" value="logout"><b>Logout</b></button>
+            </form>
+        }
+        else
+        {
+            <a class="styled-link" href="/Authentication/Login">
+                <p><b>Login</b></p>
+            </a>
+            <a class="styled-link" href="/Contact/Contacts">
+                <p><b>Contact</b></p>
+            </a>
+        }
+                <a href="https://www.instagram.com/meetevahere" target="_blank">
+                    <img src="~/image/insta_icon.webp" height="19" , width="19" />
+                </a>
+                <a href="https://x.com/meetevahere" target="_blank">
+                    <img src="~/image/x_icon.png" height="16" , width="15" />
+                </a>
+
+            </div>
+        </div>

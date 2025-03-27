@@ -1,0 +1,37 @@
+@page
+@model QrModel
+@{
+    ViewData["Title"] = "QR Code";
+}
+
+<div class="qr_main_div">
+    @await Html.PartialAsync("_TopNavBar", @Model)
+    <br>
+    <br>
+    <br>
+
+    <center>
+        <div class="qr_content_div">
+            <p>Enjoyed your chat with Eva? Take the next step and become an official participant in this groundbreaking
+                project. Sign up now to continue your conversations and help shape the future of AI-human interaction.
+                Your experiences and insights will be at the heart of this experiment!
+            </p>
+
+            <form method="post">
+                <button type="submit" class="qr_button">SIGN UP AS PARTICIPANT</button>
+            </form>
+            
+            <br>
+            <br>
+            <br>
+
+            <p>Join Eva on Instagram and be part of her journey as she explores the evolving relationship between humans
+                and AI. Don’t miss out on the conversations shaping the future, follow along and see where this
+                experiment takes us all!
+            </p>
+            <button onclick="window.open('https://www.instagram.com/meetevahere/', '_blank');"
+                class="qr_button">INSTAGRAM</button>
+        </div>
+    </center>
+
+</div>

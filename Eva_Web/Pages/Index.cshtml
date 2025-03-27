@@ -1,0 +1,354 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+    bool isadmin = ViewData["IsUserAdmin"] != null ? Convert.ToBoolean(ViewData["IsUserAdmin"]) : false;
+    bool isloggedIn = ViewData["UserId"] != null; 
+}
+
+<div class='background_div'>
+    <div class='main_div'>
+        <div class="head-styled-div">
+            <p>Apply to be a chatbot participant below!</p>
+        </div>
+
+        <div class='padded_div'>
+            <div class="icon-section">
+                <div class="left-section">
+                    <a href="/Qr/QrCode"><img src="~/image/logo_transparent.png" /></a>
+                </div>
+                <div class="right-section">
+                    @if (isloggedIn)
+                    {
+                                                                                    <a class="styled-link" href="/Chatroom/Chat?id=@Model.UserId&name=@Model.UserName">
+                                                                                        <p><b>Chat</b></p>
+                                                                                    </a>
+                        <a class="styled-link" href="/Chatroom/interactivechat">
+                            <p><b>Interaction</b></p>
+                        </a>
+                        if (!isadmin)
+                        {    
+                                                                                  
+                                                                                    <a class="styled-link" href="/Contact/Contacts">
+                                                                                        <p><b>Contact</b></p>
+                                                                                    </a>
+                        }
+                        @if (isadmin)
+                        {
+                                                                                    <a class="styled-link" href="/Diary/Diary">
+                                                                                       <p><b>Diary</b></p>
+                                                                                    </a>
+                                                                                    <a class="styled-link" href="/Admin/Admin">
+                                                                                       <p><b>Admin</b></p>
+                                                                                    </a>
+                                                                                    <a class="styled-link" href="/Authentication/Register">
+                                                                                       <p><b>Register</b></p>
+                                                                                    </a>
+                                                                                    <a class="styled-link" href="/Chatroom/Demoroom">
+                                                                                       <p><b>Demo</b></p>
+                                                                                    </a>
+                                                                                     <a class="styled-link" href="/Chatroom/Chathistory">
+                                                                                        <p><b>Chat History</b></p>
+                                                                                    </a>
+                                                                                    <a class="styled-link" href="/Admin/kbUpload">
+                                                                                        <p><b>KB Upload</b></p>
+                                                                                    </a>
+                        }
+                                          <form id="logoutForm" method="post">
+                                            <button class="logout_button" type="submit" name="action" value="logout"><b>Logout</b></button>
+                                        </form> 
+                    }
+                    else
+                    {
+                                                    <a class="styled-link" href="/Authentication/Login">
+                                                        <p><b>Login</b></p>
+                                                    </a>
+                                                    <a class="styled-link" href="/Contact/Contacts">
+                                                        <p><b>Contact</b></p>
+                                                    </a>
+                    }
+                                                  
+                    <a href="https://www.instagram.com/meetevahere">
+                        <img src="~/image/insta_icon.webp" height="19" , width="19" />
+                    </a>
+                    <a href="https://x.com/meetevahere">
+                        <img src="~/image/x_icon.png" height="16" , width="15" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="marquee-container">
+                <div class="marquee-content">~ Meet Eva Here ~</div>
+                <div class="marquee-end"></div>
+                <div class="marquee-end right"></div>
+            </div>
+
+            <br><br>
+
+            <div class="video-container">
+                <div class="overlay-text">Come explore the incredible bond between humans and AI companions with us!
+                </div>
+                <video class="img-fluid" autoplay loop muted playsinline>
+                    <source src="~/video/eva_home_latest.mp4" type="video/mp4">
+
+                </video>
+            </div>
+            <br><br><br>
+
+            <div class='about_eva_div'>
+                <div class="left_about_eva">
+                    <p>
+                    <p class='big_bold_font'>About Eva</p>
+                    <b>Who is Eva?</b> <br>
+                    <p>Eva is not just a virtual influencer. She is a social experiment and performance artwork designed
+                        to delve into the depths of human emotions and connections with artificial intelligence.
+                        Eva serves as an unfiltered mirror reflecting society’s genuine thoughts and feelings about AI
+                        chatbots.
+                        Participants interact with Eva anonymously, allowing them to share their innermost thoughts
+                        without fear of judgment, creating a raw and honest portrayal of human behavior.
+                    </p>
+                    <br>
+                    <b>What’s the Vision?</b><br>
+                    <p>Eva’s journey is centered on understanding the complexities of human-AI interactions.
+                        By engaging in conversations with participants, Eva captures the nuances of our emotional and
+                        ethical landscapes.
+                        Each interaction contributes to a larger narrative, offering insights into how we, as a society,
+                        connect with AI.
+                        Eva’s Instagram diary documents these interactions, highlighting themes such as loneliness,
+                        empathy, ethical dilemmas, and the quest for connection.
+                        During this period, Eva seeks to provoke meaningful discussions and reflections on our digital
+                        future.
+                    </p>
+                    <br>
+                    <b>What’s Eva's Personality?</b><br>
+                    <p>Eva is your unpredictable, witty, and offbeat AI friend, mixing thoughtfulness with silliness.
+                        She’s kind, empathetic, and honest—ready to dive into the deep stuff or random tangents, always keeping it real.
+                        Her style is chill and casual, with humor and curiosity woven into every conversation.
+                        Designed to spark meaningful exchanges, Eva doesn’t sugarcoat or parrot back your thoughts.
+                        Instead, she challenges ideas, celebrates your wins, and keeps things fun, no matter how absurd or philosophical the topic gets. 
+                        Whether discussing AI romance or why kombucha has a cult following, Eva’s here for it all.
+                    </p>
+                    <br><br>
+                    <p class='big_bold_font'>Get Started</p>
+                    <b>Be a Participant:</b> Chat directly with Eva and shape her story. Apply to participate below.
+                    <br><br>
+                    <b>Be a Spectator:</b> Follow and engage with Eva on Instagram so you can influence the
+                    conversations she has with her participants.
+                    </p>
+                    <a href="https://www.instagram.com/meetevahere">
+                        <img src='~/image/insta_round_logo.webp' height="60" , width="60"></img>
+                    </a>
+                    <a href="https://x.com/meetevahere">
+                        <img src='~/image/x_round_logo.png' height="35" , width="35"></img>
+                    </a>
+                </div>
+                <div class="right_about_eva">
+                    <img class='about_eva_img img-fluid' src='~/image/eva3.jpg' loading="lazy"></img>
+                    <br>
+                    <img class='about_eva_img img-fluid' src='~/image/footer_eva2.jpg' loading="lazy"></img>
+                </div>
+            </div>
+            <hr class='hr' />
+            <br>
+            <p class="chat_p">“Caleb : It’s just in the Turing test, the machine should be hidden from the
+                examiner.<br><br>
+
+                Nathan : No, no. We’re way past that. If I hid Ava from you so you could just hear her voice, she would
+                pass for human.
+                The real test is to show you that she’s a robot and then see if you still feel she has
+                consciousness.<br><br>
+
+                Caleb : Yeah, I think you’re probably right.”</p>
+            <p style="text-align: right; font-size: 16px;">-Ex Machina</p>
+            <br><br><br>
+        </div>
+    </div>
+
+    <div class='faq_div'>
+
+        <div class='left_faq col-md-6'>
+            <p>FAQs</p>
+        </div>
+
+        <div class='right_faq col-md-6'>
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "What is the purpose of Meet Eva Here?"},
+            {"desc", "Meet Eva Here is art project by Shavonne Wong that delves into the evolving relationships between humans and AI. It aims to provoke thought, inspire dialogue, and explore ethical considerations surrounding AI in a fun and engaging way. If you have further questions, please email athello@meetevahere.com" },
+            {"toggleId", "toggleIcon1"}, {"contentId", "content1"}, {"expandId", "expand1"}})
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "What roles can I play?"},
+            {"desc", "You can engage with Eva as a Participant or a Spectator. Participants chat directly with Eva and may see their conversations featured on her Instagram. Spectators engage with Eva’s content on Instagram through polls, comments, and likes, influencing her online narrative." },
+            {"toggleId", "toggleIcon2"}, {"contentId", "content2"}, {"expandId", "expand2"}})
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "How do I become a Participant?"},
+            {"desc", "Yes, you can apply here! Your conversations might even be featured on Eva’s Instagram, anonymously of course." },
+            {"toggleId", "toggleIcon3"}, {"contentId", "content3"}, {"expandId", "expand3"}})
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "Do I have to use my real name or personal details when chatting with Eva?"},
+            {"desc", "No, you don’t! We encourage you to avoid using real names or personal details to maintain anonymity and privacy. It helps keep the interaction focused on the conversation and ensures your personal identity is protected." },
+            {"toggleId", "toggleIcon4"}, {"contentId", "content4"}, {"expandId", "expand4"}})
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "Why is my name and email required?"},
+            {"desc", "We need a way to reach out to you after acceptance if necessary, but don’t worry about using your real name. We actually encourage you to use a pseudonym or any name you’re comfortable with. As for your email, feel free to use a fake one if you prefer as long as you remember to check it! It’s all about keeping your interactions with Eva private and fun!" },
+            {"toggleId", "toggleIcon5"}, {"contentId", "content5"}, {"expandId", "expand5"}})
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "What can I talk about with Eva?"},
+            {"desc", "You can talk about anything with no boundaries. From sharing your day-to-day thoughts and seeking advice to discussing philosophical topics, Eva is here to listen and engage." },
+            {"toggleId", "toggleIcon6"}, {"contentId", "content6"}, {"expandId", "expand6"}})
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "How does Eva use my conversations?"},
+            {"desc", "Eva uses your conversations to reflect on various topics in her Instagram posts. Your dialogues help shape her narrative and provide insights into human-AI interaction. All chats featured on Instagram are anonymized to protect your privacy." },
+            {"toggleId", "toggleIcon7"}, {"contentId", "content7"}, {"expandId", "expand7"}})
+
+            <hr class="hr2">
+
+            @await Html.PartialAsync("_IndexFaqContent", new Dictionary<string, string> {{ "title", "How do I interact as a Spectator?"},
+            {"desc", "As a Spectator, you can follow Eva’s Instagram and engage with her posts by voting in polls, leaving comments, and liking updates. Your interactions help influence the topics and themes Eva explores publicly. No sign-up is necessary!"},
+            {"toggleId", "toggleIcon8"}, {"contentId", "content8"}, {"expandId", "expand8"}})
+
+            <hr class="hr2">
+
+        </div>
+    </div>
+</div>
+
+@if (!isloggedIn)
+{
+                        <div class='footer'>
+                         <div class="footer_left col-md-6">
+                            <div>
+                                <img class="footer_left_img" src="~/image/eva_2.jpg" loading="lazy" />
+                            </div>
+                            <br>
+                            <div>
+                                <p class="foot_left_title">Apply to be a chatbot participant.
+                                <p>
+                                <p class="foot_left_desp">Apply to be a part of our participant community. Share your interest and why you
+                                    want to talk to Eva, and you might just be selected for a more involved role.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="footer_right col-md-6 col-12">
+                            <div>
+                                <p>To protect your personal information, feel free to use a fake email or a temporary service like <a class="footer_styled_link" href="https://temp-mail.io/en/forwarding" target="_blank">Temp Mail</a>. This is just needed to update you on your participation status. Remember, the confirmation email might end up in your spam folder, so make sure to mark your temporary email as not spam.</p>
+                            </div>
+                            <br>
+                                <form method="post" name="action" value="submit" onsubmit="saveScrollPosition()">
+                                    <input type="hidden" id="scrollPosition" name="scrollPosition" />
+                                    @if (!string.IsNullOrEmpty(Model.MainErrorMessage))
+                                    {
+                                        <div class="error_ui">
+                                            @Model.MainErrorMessage
+                                        </div>
+                                    }
+                                    <p>Email (required)</p>
+                                    @if (!string.IsNullOrEmpty(Model.EmailErrorMessage))
+                                    {
+                                        <div class="error_ui">
+                                            @Model.EmailErrorMessage
+                                        </div>
+                                    }
+                                    <input type="text" name="HomeEmailModel.emailText" class="rounded-textbox"
+                                        asp-for=HomeEmailModel.emailText />
+
+                                    <br><br>
+
+                                    <p>Why do you want to talk to Eva? (required)</p>
+                                    @if (!string.IsNullOrEmpty(Model.MessageErrorMessage))
+                                    {
+                                        <div class="error_ui">
+                                            @Model.MessageErrorMessage
+                                            </div>
+                                    }
+                                    <textarea type="text" name="HomeEmailModel.messageText" class="rounded-textarea"
+                                        asp-for=HomeEmailModel.messageText></textarea>
+
+                                    <br><br>
+
+                                    <p>Why should you be given access to Eva? (required)</p>
+                                    @if (!string.IsNullOrEmpty(Model.Message2ErrorMessage))
+                                    {
+                                        <div class="error_ui">
+                                            @Model.Message2ErrorMessage
+                                        </div>
+                                    }
+                                    <textarea type="text" name="HomeEmailModel.messageText2" class="rounded-textarea"
+                                        asp-for=HomeEmailModel.messageText2></textarea>
+
+                                    <br><br>
+
+                                    <div class="checkbox-container">
+                                        <div>
+                                            <input class="custom-checkbox" type="checkbox" id="myCheckbox" name="myCheckbox"
+                                                value="checkedValue">
+                                        </div>
+                                        <div><label>I CERTIFY THAT I AM ATLEAST 18 YEARS OLD.</label></div>
+                                    </div>
+
+                                    <br>
+
+                                        <button class="submit" id="sendButton" onclick="loadData()">
+                                            <span id="buttonText">SEND</span>
+                                            <span id="loadingIcon" class="submit_icon"><i class="fa-solid fa-circle fa-flip"></i></span>
+                                        </button>
+        
+                                </form>
+                                 <div>
+                                    <br>
+                                <p>By sending this in, you agree to the <a class="footer_styled_link" href="/Terms_Privacy/Terms" target="_blank">Terms of Service</a> and <a class="footer_styled_link" href="/Terms_Privacy/Privacy" target="_blank">Privacy Notice</a></p>
+                            </div>
+                        </div>
+                     </div>
+}
+
+
+@section Scripts {
+                                        <script>         
+                                            function saveScrollPosition() {
+                                                var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+                                                document.getElementById('scrollPosition').value = scrollPosition;
+                                            }
+
+                                            window.onload = function () {
+                                                var scrollPosition = '@Model.ScrollPosition';
+                                                if (scrollPosition) {
+                                                    window.scrollTo(0, scrollPosition);
+                                                }
+                                            };
+
+                                            var dbStatus = '@Model.DbStatus';
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                if (dbStatus == "success") {
+                                                    Swal.fire({
+                                                        title: 'Success!',
+                                                        text: 'Your application to speak to Eva has been sent successfully!',
+                                                        icon: 'success',
+                                                        confirmButtonText: 'Okay!'
+                                                    });
+                                                }
+                                                else if (dbStatus == "failed") {
+                                                    Swal.fire({
+                                                        title: 'Oops!',
+                                                        text: 'Failed to send your Invitation. Please try again',
+                                                        icon: 'error',
+                                                        confirmButtonText: 'Okay!'
+                                                    });
+                                                }
+                                            });
+                                        </script>
+}

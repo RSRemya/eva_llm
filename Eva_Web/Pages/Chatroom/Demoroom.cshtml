@@ -1,0 +1,139 @@
+﻿@page
+@model Eva_Web.Pages.DemoroomModel
+@{
+    ViewData["Title"] = "Chatroom";
+}
+
+<div class="chatroom_main_div">
+    @await Html.PartialAsync("_TopNavBar", @Model)
+    <center>
+        
+            <div style="color:red" class=demo_time id="timer"></div>
+        
+    </center>
+
+    @section Scripts {
+        <script type="text/javascript" src="https://botstacks.sfo3.cdn.digitaloceanspaces.com/webassistant.js"></script>
+        <script type="text/javascript">
+
+            // Trigger Botstack's chat window
+            window.onload = function () {
+                initBotStackAssistant({
+                    apiKey: "z528mfqqos67kd5ynl18bhc0",
+                    botId: "239c5713-699b-45ec-93eb-50c6b7ced24c",//demo it dont change
+                   // botId: "b6fa77ce-0360-43a7-b7fd-c446d6d57068",
+                    userData: {
+                        id: "@Model.UserId",
+                        username: "@Model.Name",
+                    }
+                });
+                alignUI();
+            };
+            function alignUI() {
+                const intervalId = setInterval(() => {
+                    if ($("#botstacks-widget > div.b-launcher.b-closed.b-bottom")) {
+                        $("#botstacks-widget > div.b-launcher.b-closed.b-bottom").click()
+                        $("#botstacks-widget > div.b-launcher.b-open").hide()
+                        $("#botstacks-widget > div.b-widget-content.b-animate-spring > div.b-header").hide()
+                        $("#botstacks-widget").css('width', '98%')
+                        $("#botstacks-widget").css('height', '80%')
+                        $("#botstacks-widget").css('margin-left', '30px')
+                        $("#botstacks-widget").css('background-color', '#ffffff')
+                        $("#botstacks-widget").css('border', '2px solid black')
+                        $("#botstacks-widget").css('border-radius', '22px')
+                    }
+                    if ($("#botstacks-widget > div.b-widget-content.b-animate-spring > div.b-header").is(':hidden'))
+                        clearInterval(intervalId);
+
+                }, 0.4);
+            }
+
+            // Detect if the back button is pressed
+            window.addEventListener('popstate', function (event) {
+                // Check if the current page is not the index page
+                if (window.location.pathname !== '/Index') {
+                    // Redirect to the /Index page
+                    window.location.href = '/Index';
+                }
+            });
+            $(window).resize(function () {
+                alignUI();
+            });
+            // Push the current state to the history stack
+            history.pushState({}, '');
+
+
+            // Function to reset the timer for demo page, idea is that the session will be cleared with no user activity in 2 mins
+            (function () {
+                let timeout;
+                let timerInterval;
+                let hasUserInteracted = false;
+                let eventfireCount = 0;
+                let timer = 120;
+
+                function ListenForUserInteractions(handler) {
+                    window.addEventListener('load', handler);
+                    window.addEventListener('mousemove', handler);
+                    window.addEventListener('keypress', handler);
+                    window.addEventListener('click', handler);
+                    window.addEventListener('scroll', handler);
+                    window.addEventListener('touchstart', handler);
+                }
+
+                function startTimer() {
+                    clearInterval(timerInterval);
+                    timer = 60;
+
+                    // Start a new interval for the timer countdown
+                    timerInterval = setInterval(() => {
+                        const minutes = Math.floor(timer / 60);
+                        const seconds = timer % 60;
+
+                        // Format the time as MM:SS
+                        const formattedTime =
+                            minutes.toString().padStart(2, '0') + ':' +
+                            seconds.toString().padStart(2, '0');
+
+                            if(hasUserInteracted && timer<30)
+                            document.getElementById("timer").textContent = "Resetting in (" + formattedTime + ") due to inactivity";
+
+                        timer--;
+
+                        if (timer < 0) {
+                            timer = 60; // Restart the timer with the initial value
+                        }
+                    }, 1000);
+                }
+
+                function resetTimer(e) {
+                    if (eventfireCount == 0)//this is a hack because event is firing on page load even without user interaction
+                    {
+                        eventfireCount++;
+                        return;
+                    }
+                    if (!hasUserInteracted) {
+                        hasUserInteracted = true; //first timer
+                        timeout = setTimeout(() => {
+                            location.reload();
+                            startTimer();
+                        }, 1 * 60 * 1000);
+
+                        startTimer();
+                    }
+                    else {
+                         document.getElementById("timer").textContent ='';
+                        clearTimeout(timeout); //reset and set timer again for all interactions after an first interaction
+
+                        timeout = setTimeout(() => {
+                            location.reload();
+                            startTimer();
+                        }, 1 * 60 * 1000);
+
+                        startTimer();
+                    }
+                }
+                ListenForUserInteractions(resetTimer);
+            })();
+        </script>
+    }
+</div>

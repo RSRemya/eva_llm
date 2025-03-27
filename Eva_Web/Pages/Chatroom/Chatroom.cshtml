@@ -1,0 +1,62 @@
+﻿@page
+@model Eva_Web.Pages.ChatroomModel
+@{
+    ViewData["Title"] = "Chatroom";
+}
+
+<div class="chatroom_main_div">
+    @await Html.PartialAsync("_TopNavBar", @Model)
+
+    @section Scripts {
+        <script type="text/javascript" src="https://botstacks.sfo3.cdn.digitaloceanspaces.com/webassistant.js"></script>
+        <script type="text/javascript">
+
+            // Trigger Botstack's chat window
+            window.onload = function () {
+                initBotStackAssistant({
+                    apiKey: "z528mfqqos67kd5ynl18bhc0",
+                    botId: "b6fa77ce-0360-43a7-b7fd-c446d6d57068",
+                    userData: {
+                        id: "@Model.UserId",
+                        username: "@Model.Name",
+                    }
+                });
+                alignUI();
+            };
+            function alignUI() {
+                const intervalId = setInterval(() => {
+                    if ($("#botstacks-widget > div.b-launcher.b-closed.b-bottom")) {
+                        $("#botstacks-widget > div.b-launcher.b-closed.b-bottom").click()
+                        $("#botstacks-widget > div.b-launcher.b-open").hide()
+                        $("#botstacks-widget > div.b-widget-content.b-animate-spring > div.b-header").hide()
+                        $("#botstacks-widget").css('width', '98%')
+                        $("#botstacks-widget").css('height', '84%')
+                        $("#botstacks-widget").css('margin-left', '30px')
+                        $("#botstacks-widget").css('background-color', '#ffffff')
+                        $("#botstacks-widget").css('border', '2px solid black')
+                        $("#botstacks-widget").css('border-radius', '22px')
+                    }
+                    if ($("#botstacks-widget > div.b-widget-content.b-animate-spring > div.b-header").is(':hidden'))
+                        clearInterval(intervalId);
+
+                }, 0.4);
+            }
+
+            $(window).resize(function () {
+                alignUI();
+            });
+
+            // Detect if the back button is pressed
+            window.addEventListener('popstate', function (event) {
+                // Check if the current page is not the index page
+                if (window.location.pathname !== '/Index') {
+                    // Redirect to the /Index page
+                    window.location.href = '/Index';
+                }
+            });
+
+            // Push the current state to the history stack
+            history.pushState({}, '');
+        </script>
+    }
+</div>

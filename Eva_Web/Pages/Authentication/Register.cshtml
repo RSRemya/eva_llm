@@ -1,0 +1,88 @@
+﻿@page
+@model Eva_Web.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class='register_main_div'>
+    <br>
+    <div class='register_padded_div'>
+       @await Html.PartialAsync("_TopNavBar", @Model)
+        <br><br>
+        <div class='register_div'>
+            <div class='left_register_div col-md-6'>
+                <p class='big_bold_font'>Register!</p>
+                <p>Want to see what Eva has been up to? Please register to be a chatbot participant below! ✨
+                </p>
+                <br>
+                @if (!string.IsNullOrEmpty(Model.MainErrorMessage))
+                {
+                    <div class="error_ui">
+                        @Model.MainErrorMessage
+                    </div>
+                }
+                <form method="post" onsubmit="saveScrollPosition()">
+                    <input type="hidden" id="scrollPosition" name="scrollPosition" />
+                    <p>Email (required)</p>
+                    </p>
+                    @if (!string.IsNullOrEmpty(Model.EmailErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.EmailErrorMessage
+                        </div>
+                    }
+                    <input type="text" name="RegisterFormModel.emailText" class='register_rounded_textbox'
+                        asp-for="RegisterFormModel.emailText" />
+                    <br><br>
+                    <p>Password (required)</p>
+                    @if (!string.IsNullOrEmpty(Model.PasswordErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.PasswordErrorMessage
+                        </div>
+                    }
+                    <input type="text" name="RegisterFormModel.passwordText" class='register_rounded_textbox'
+                        asp-for="RegisterFormModel.passwordText" />
+                    <br><br>
+                    <p>Confirm Password (required)</p>
+                    @if (!string.IsNullOrEmpty(Model.ConfirmPasswordErrorMessage))
+                    {
+                        <div class="error_ui">
+                            @Model.ConfirmPasswordErrorMessage
+                        </div>
+                    }
+                    <input type="text" name="RegisterFormModel.confirmPasswordText" class='register_rounded_textbox'
+                        asp-for="RegisterFormModel.confirmPasswordText" />
+                    <br><br>
+                    <div>
+                        <button class="register_submit" id="sendButton" onclick="loadData()">
+                            <span id="buttonText">SIGN UP</span>
+                            <span id="loadingIcon" class="register_submit_icon"><i
+                                    class="fa-solid fa-circle fa-flip"></i></span>
+                        </button>
+                    </div>
+                </form>
+                <br><br>
+            </div>
+            <div class='right_register_div col-md-6'>
+                <img class='register_eva_img img-fluid' src='~/image/eva_img2.png' loading="lazy"></img>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function saveScrollPosition() {
+            var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            document.getElementById('scrollPosition').value = scrollPosition;
+        }
+
+        window.onload = function () {
+            var scrollPosition = '@Model.ScrollPosition';
+            if (scrollPosition) {
+                window.scrollTo(0, scrollPosition);
+            }
+        };
+    </script>
+}

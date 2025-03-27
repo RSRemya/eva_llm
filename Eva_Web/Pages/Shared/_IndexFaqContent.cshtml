@@ -1,0 +1,15 @@
+
+<div class="expandable-container">
+    <div class='expandable_row' id="@Model["expandId"]">
+        <div class="quest_left">
+            <p>@Model["title"]</p>
+        </div>
+        <div class="quest_right"><i class="icon fas fa-plus fa-2x " id="@Model["toggleId"]"></i></div>
+
+    </div>
+    <div id="@Model["contentId"]" class="content">
+        <br>
+        @Model["desc"]
+        <br><br>
+    </div>
+</div>
